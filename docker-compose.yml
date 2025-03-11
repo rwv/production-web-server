@@ -4,10 +4,10 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
-    # ports:
-    #   - "80:80"
-    #   - "443:443"
-    #   - "443:443/udp"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
     volumes:
       - $PWD/conf:/etc/caddy
       - $PWD/site:/srv
