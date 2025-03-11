@@ -1,0 +1,37 @@
+# Look Scanned
+
+# Web Pages
+*.web.lookscanned.io zh.lookscanned.io cn.lookscanned.io lookscanned.io {
+	reverse_proxy * {
+		to https://cf.lookscanned.io
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+# API
+*.api.lookscanned.io api-hk.lookscanned.io {
+	reverse_proxy * {
+		to https://api.lookscanned.io
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+# R2
+*.r2.lookscanned.io r2.lookscanned.io {
+	reverse_proxy * {
+		to https://d7f973ebf9677bdfa325d3d1a263e6e9.r2.cloudflarestorage.com
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}

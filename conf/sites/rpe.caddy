@@ -1,0 +1,12 @@
+{env.RPE_DOMAIN_LOCAL} {
+	encode zstd gzip
+
+	reverse_proxy * {
+		to {env.RPE_DOMAIN_BACKEND}
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}

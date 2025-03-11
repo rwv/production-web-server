@@ -1,0 +1,9 @@
+{
+	email i@rwv.dev
+
+	servers {
+		protocols h1 h2
+	}
+}
+
+import ./sites/*.caddy

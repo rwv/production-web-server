@@ -1,0 +1,26 @@
+# DOS
+
+# Web Pages
+*.web.dos.lol dos.lol www.dos.lol {
+	reverse_proxy * {
+		to https://cf.dos.lol
+		header_up Host {http.reverse_proxy.upstream.host}
+		header_down Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+# API
+*.api.dos.lol api.dos.lol {
+	reverse_proxy * {
+		to https://api-workers.dos.lol
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}

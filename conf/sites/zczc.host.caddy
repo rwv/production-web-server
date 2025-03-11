@@ -1,0 +1,7 @@
+*.zczc.host {
+	respond "Hello!"
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}

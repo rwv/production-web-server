@@ -1,0 +1,37 @@
+# Zaixianwan
+
+# Web Pages
+*.web.zaixianwan.app www.zaixianwan.app zaixianwan.app {
+	reverse_proxy * {
+		to https://cf.zaixianwan.app
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+# PS2 (need special header)
+ps2.zaixianwan.app {
+	reverse_proxy * {
+		to https://ps2-cf.zaixianwan.app
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+# API
+*.api.zaixianwan.app {
+	reverse_proxy * {
+		to https://api.zaixianwan.app
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}

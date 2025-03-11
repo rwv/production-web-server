@@ -1,0 +1,22 @@
+*.web.flash.homes flash.homes www.flash.homes {
+	reverse_proxy * {
+		to https://cf.flash.homes
+		header_up Host {http.reverse_proxy.upstream.host}
+		header_down Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+*.api.flash.homes {
+	reverse_proxy * {
+		to https://api.flash.homes
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
