@@ -20,7 +20,9 @@
 		header_up Host {http.reverse_proxy.upstream.host}
 	}
 
-	tls {
+	# to fix Let's Encrypt not compatible with Windows 7
+	tls {$ZEROSSL_EMAIL} {
+		ca https://acme.zerossl.com/v2/DV90
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 	}
 }
