@@ -46,3 +46,4 @@ ps2.zaixianwan.app {
 	tls {
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 	}
+}
