@@ -24,6 +24,18 @@ ps2.zaixianwan.app {
 	}
 }
 
+# Threads (to allow shared array buffer)
+threads.zaixianwan.app {
+	reverse_proxy * {
+		to https://threads-cf.zaixianwan.app
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
 # API
 *.api.zaixianwan.app {
 	reverse_proxy * {
