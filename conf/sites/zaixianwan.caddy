@@ -35,3 +35,14 @@ ps2.zaixianwan.app {
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 	}
 }
+
+# EmulatorJS
+*.emulatorjs.zaixianwan.app {
+	reverse_proxy * {
+		to https://emulatorjs.zaixianwan.app
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
