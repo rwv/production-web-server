@@ -59,3 +59,15 @@ threads.zaixianwan.app {
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 	}
 }
+
+# emulatorjs-legacy
+emulatorjs-legacy.zaixianwan.app {
+	reverse_proxy * {
+		to https://cf-emulatorjs-legacy.zaixianwan.app
+		header_up Host {http.reverse_proxy.upstream.host}
+	}
+	
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
