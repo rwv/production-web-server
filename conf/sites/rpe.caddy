@@ -1,8 +1,8 @@
-{env.RPE_DOMAIN_LOCAL} {
+*.rpe.zczc.men {
 	encode zstd gzip
 
 	reverse_proxy * {
-		to {env.RPE_DOMAIN_BACKEND}
+		to https://rpe.zczc.men
 		header_up Host {http.reverse_proxy.upstream.host}
 	}
 
